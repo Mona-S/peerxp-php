@@ -4,16 +4,18 @@ class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
+            username: "",
             email: "",
-            password: ""
+            user_password: ""
         }
-
+        
+        var obj;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event){
+        event.preventDefault();
         this.setState({
             [event.currentTarget.name]: event.currentTarget.value
           });
@@ -21,20 +23,29 @@ class SignIn extends React.Component {
     }
 
     handleSubmit(event){
+        console.log('submit');
         event.preventDefault();
         this.saveInfo();
-        this.props.setView('addTicket', {});
+        // this.props.setView('addTicket', {});
     }
 
-    saveInfo() {
-        fetch('/api/sign-in.php', {
+
+     
+
+    // saveInfo() {
+    //     axios.post("http://localhost/server/public/api/signIn.php", 
+    //     obj)
+    //     .then(response => console.log(response.data));
+    // }
+    saveInfo() { 
+        fetch('/api/signIn.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(this.state)
         })
           .then(response => response.json());
     
-      }
+    }
 
     render(){
         return (
@@ -42,8 +53,8 @@ class SignIn extends React.Component {
             <form onSubmit={this.handleSubmit} >
                 <div className="form-group">
                     <input type="text" 
-                        name="name" 
-                        value={this.state.name} 
+                        name="username" 
+                        value={this.state.username} 
                         onChange={this.handleChange} 
                         id="name" 
                         className="form-control" 
@@ -62,14 +73,14 @@ class SignIn extends React.Component {
 
                 <div className="form-group">
                     <input type="password" 
-                        name="password" 
+                        name="user_password" 
                         className="form-control" 
                         placeholder="Password" 
-                        value={this.state.password} 
+                        value={this.state.user_password} 
                         onChange={this.handleChange} />
                 </div>
 
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" name="submit" className="btn btn-primary">Submit</button>
             </form>
 
             </React.Fragment>
