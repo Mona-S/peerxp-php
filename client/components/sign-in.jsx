@@ -1,17 +1,18 @@
-import React from 'react';
+import React from "react";
 
-class SignIn extends React.Component {
+export default class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: "",
             email: "",
             user_password: ""
+            
         }
         
-        var obj;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        
     }
 
     handleChange(event){
@@ -23,20 +24,16 @@ class SignIn extends React.Component {
     }
 
     handleSubmit(event){
-        console.log('submit');
+        
         event.preventDefault();
         this.saveInfo();
-        // this.props.setView('addTicket', {});
+       
+        
+        this.props.setView('newticket', (this.state));
+        
     }
 
 
-     
-
-    // saveInfo() {
-    //     axios.post("http://localhost/server/public/api/signIn.php", 
-    //     obj)
-    //     .then(response => console.log(response.data));
-    // }
     saveInfo() { 
         fetch('/api/signIn.php', {
           method: 'POST',
@@ -50,6 +47,9 @@ class SignIn extends React.Component {
     render(){
         return (
             <React.Fragment>
+            <div className ="container">
+                <h3>Sign In</h3>
+                <br/>
             <form onSubmit={this.handleSubmit} >
                 <div className="form-group">
                     <input type="text" 
@@ -60,7 +60,7 @@ class SignIn extends React.Component {
                         className="form-control" 
                         placeholder="Name" />
                 </div>
-                
+                <br/>
                 <div className="form-group">  
                     <input type="email" 
                         name="email" 
@@ -70,7 +70,7 @@ class SignIn extends React.Component {
                         onChange={this.handleChange} 
                         id="exampleInputEmail1" />     
                 </div>
-
+                <br/>
                 <div className="form-group">
                     <input type="password" 
                         name="user_password" 
@@ -79,14 +79,13 @@ class SignIn extends React.Component {
                         value={this.state.user_password} 
                         onChange={this.handleChange} />
                 </div>
-
-                <button type="submit" name="submit" className="btn btn-primary">Submit</button>
+                <br/>           
+                <button type="submit" name="submit" className="btn btn-dark" >SignIn</button>
             </form>
+            </div>
 
             </React.Fragment>
             
         )
     }
 }
-
-export default SignIn;
