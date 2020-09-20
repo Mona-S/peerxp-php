@@ -16,7 +16,6 @@ if ( empty( $_GET['username'] ) ) {
 
 $query = "SELECT id, username, email FROM users $whereClause ";
 
-echo $query;
 $result = mysqli_query($conn, $query);
 
 
@@ -25,7 +24,6 @@ $output = array();
 while ($row = mysqli_fetch_assoc($result)) {
   $output[] = $row;
 };
-
 
 print(json_encode($output));
 

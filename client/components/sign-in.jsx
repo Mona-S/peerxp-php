@@ -6,8 +6,7 @@ export default class SignIn extends React.Component {
         this.state = {
             username: "",
             email: "",
-            user_password: ""
-            
+            user_password: ""    
         }
         
         this.handleChange = this.handleChange.bind(this);
@@ -16,23 +15,19 @@ export default class SignIn extends React.Component {
     }
 
     handleChange(event){
-        event.preventDefault();
+        event.preventDefault();  
         this.setState({
             [event.currentTarget.name]: event.currentTarget.value
           });
 
     }
 
-    handleSubmit(event){
-        
+    handleSubmit(event){    
         event.preventDefault();
-        this.saveInfo();
-       
-        
+        this.saveInfo(); 
         this.props.setView('newticket', (this.state));
         
     }
-
 
     saveInfo() { 
         fetch('/api/signIn.php', {
