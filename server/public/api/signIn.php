@@ -6,7 +6,6 @@ set_exception_handler('error_handler');
 startup();
 set_error_handler('error_handler');
 
-
 require_once('./db_connection.php');
 
 $json_input = file_get_contents('php://input');
@@ -20,7 +19,6 @@ $query = "INSERT INTO users(username, email, user_password)
           VALUES ('$username', '$email', '$user_password')";
 
 $result = mysqli_query($conn, $query);
-
 
 
 if ($result){

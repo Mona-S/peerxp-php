@@ -2,7 +2,7 @@ import React from "react";
 import SignIn from "./sign-in.jsx";
 import NewTicket from "./new-ticket.jsx";
 import ManageTicket from "./manage-ticket.jsx";
-// import UserInfo from "./user-info.jsx";
+
 
 export default class App extends React.Component {
     constructor(props){
@@ -17,17 +17,15 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
 }
 
-
     setView(name, params) {
         this.setState({ view: {
           name: name,
           params: params
-        } });
+        }});
       }
     
 
     render(){
-
         if (this.state.view.name === 'newticket') {
             return (
                 <React.Fragment>
@@ -38,13 +36,15 @@ export default class App extends React.Component {
         else if (this.state.view.name === 'manageTicket') {
             return (
                 <React.Fragment>
-                <ManageTicket setView={this.setView} params={this.state.view.params}/>
-            </React.Fragment>
+                    <ManageTicket setView={this.setView} params={this.state.view.params}/>
+                </React.Fragment>
             )
         }
         else 
             return ( 
-                <SignIn setView={this.setView} params={this.state.view.params}/>
+                <React.Fragment>
+                    <SignIn setView={this.setView} params={this.state.view.params}/>
+                </React.Fragment>
             )
         }       
     
